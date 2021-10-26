@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="button-crear-pizza-container">
+    <a class="button button-crear-pizza" asp-controller="Home" asp-action="AgregarPizza">
+        <span>Crear Pizza</span>
+    </a>
+</div>
+
+<div class="row">
+    @foreach (Pizza pizza in ViewBag.Pizzas){
+        <div class="col-md-4">
+            <div class="cuadro">
+                <img class="w-100" src="@pizza.UrlFoto" alt="@pizza.Nombre">
+                <div>
+                    <h5>@pizza.Nombre</h5>
+                    <p>$@pizza.Precio</p>
+                    <a href='@Url.Action("VerPizza", "Home", new { id = @pizza.Id })' class="btn btn-primary">Ver</a>
+                    <a href='@Url.Action("EliminarPizza", "Home", new { id = @pizza.Id })' class="btn btn-danger">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
