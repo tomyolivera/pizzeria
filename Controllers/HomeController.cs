@@ -11,8 +11,6 @@ namespace tp09.Controllers
 {
     public class HomeController : Controller
     {
-        // private Pizza Pizza;
-
         public IActionResult Index()
         {
             ViewBag.Pizzas = Pizzeria.ListarPizzas();
