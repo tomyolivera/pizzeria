@@ -15624,8 +15624,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\xampp\\htdocs\\files\\ORT\\tp09\\Views\\Home\\AgregarPizza.cshtml",
-      "TargetPath": "Views\\Home\\AgregarPizza.cshtml",
+      "FilePath": "c:\\xampp\\htdocs\\files\\ORT\\tp09\\Views\\Home\\FormularioPizza.cshtml",
+      "TargetPath": "Views\\Home\\FormularioPizza.cshtml",
       "FileKind": "mvc"
     },
     {

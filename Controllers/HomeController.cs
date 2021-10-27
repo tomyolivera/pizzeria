@@ -23,25 +23,44 @@ namespace tp09.Controllers
         public IActionResult VerPizza(int id)
         {
             ViewBag.Pizza = Pizzeria.ListarPizzas().FirstOrDefault(p => p.Id == id);
+
+            if(ViewBag.Pizza == null){
+                ViewBag.Error = "Pizza no encontrada!";
+                return RedirectToAction("Index");
+            }
+
             return View("DetallePizza");
         }
 
         public IActionResult AgregarPizza()
         {
             ViewBag.Ingredientes = Pizzeria.ListarIngredientes();
-            return View();
+            ViewBag.Pizza = new List<Pizza>();
+            ViewBag.editing = false;
+            return View("FormularioPizza");
         }
 
         [HttpPost]
-        public IActionResult GuardarPizza(string nombre, double precio, string tamaño, string urlfoto, List<string> ingredientes)
+        public IActionResult GuardarPizza(string nombre, double precio, string Tamano, string urlfoto, List<string> ingredientes)
         {
-            if (nombre == "" || precio == 0 || tamaño == "" || urlfoto == "" || ingredientes.Count == 0)
+            if (nombre == "" || precio == 0 || Tamano == "" || urlfoto == "" || ingredientes.Count == 0)
             {
-                ViewBag.Error = "No se puede guardar la pizza";
-                return View("Error");
+                ViewBag.Error = "No se puede guardar la pizza: Faltan completar campos";
+                return RedirectToAction("Index");
             }
 
-            Pizza Pizza = new Pizza(nombre, precio, tamaño, urlfoto);
+            Random rnd = new Random();
+            int id = rnd.Next(1, 100);            
+            bool found = true;
+            
+            while (found)
+            {
+                id = rnd.Next(1, 100);
+                if(Pizzeria.ListarPizzas().FirstOrDefault(p => p.Id == id) == null)
+                    found = false;
+            }
+            
+            Pizza Pizza = new Pizza(id, nombre, precio, Tamano, urlfoto);
             
             List<Ingrediente> Ingredientes = new List<Ingrediente>();
             foreach (string ingrediente in ingredientes)
@@ -54,10 +73,52 @@ namespace tp09.Controllers
             Pizzeria.AgregarPizza(Pizza);
             return RedirectToAction("Index");
         }
+
+        public IActionResult EditarPizza(int id)
+        {
+            ViewBag.Pizza = Pizzeria.ListarPizzas().FirstOrDefault(p => p.Id == id);
+
+            if(ViewBag.Pizza == null){
+                ViewBag.Error = "Pizza no encontrada!";
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Ingredientes = Pizzeria.ListarIngredientes();
+            ViewBag.editing = true;
+            return View("FormularioPizza");
+        }
+
+        [HttpPost]
+        public IActionResult ActualizarPizza(int id, string nombre, double precio, string Tamano, string urlfoto, List<string> ingredientes)
+        {
+            if (nombre == "" || precio == 0 || Tamano == "" || urlfoto == "" || ingredientes.Count == 0)
+            {
+                ViewBag.Error = "No se puede guardar la pizza: Faltan completar campos";
+                return RedirectToAction("Index");
+            }
+
+            Pizza Pizza = Pizzeria.ListarPizzas().FirstOrDefault(p => p.Id == id);
+            Pizza.Nombre = nombre;
+            Pizza.Precio = precio;
+            Pizza.Tamano = Tamano;
+            Pizza.UrlFoto = urlfoto;
+
+            List<Ingrediente> Ingredientes = new List<Ingrediente>();
+            foreach (string ingrediente in ingredientes)
+            {
+                Ingredientes.Add(Pizzeria.ListarIngredientes().FirstOrDefault(i => i.Nombre == ingrediente));
+            }
+
+            Pizza.AgregarIngredientes(Ingredientes);
+            return RedirectToAction("Index");
+        }
+
+
         public IActionResult EliminarPizza(int id)
         {
-            Pizzeria.EliminarPizza(id);
-
+            if(!Pizzeria.EliminarPizza(id))
+                ViewBag.Error = "No se puede eliminar la pizza";
+            
             return RedirectToAction("Index");
         }
     }

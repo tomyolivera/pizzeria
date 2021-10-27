@@ -8,25 +8,23 @@ namespace tp09.Models
         private int _id;
         private string _nombre;
         private double _precio;
-        private string _tamaño;
+        private string _Tamano;
         private string _urlFoto;
         private List <Ingrediente> _ListaIngredientes = new List<Ingrediente>();
 
-        public int Id{ get {return _id;} }
-        public string Nombre{ get {return _nombre;} }
-        public double Precio{ get {return _precio;} }
-        public string Tamaño{ get {return _tamaño;} }
-        public string UrlFoto{ get {return _urlFoto;} }
+        public int Id{ get {return _id;} set { _id = value; } }
+        public string Nombre{ get {return _nombre;} set { _nombre = value; } }
+        public double Precio{ get {return _precio;} set { _precio = value; } }
+        public string Tamano{ get {return _Tamano;} set { _Tamano = value; } }
+        public string UrlFoto{ get {return _urlFoto;} set { _urlFoto = value; } }
         public List<Ingrediente> ListaIngredientes{ get {return _ListaIngredientes;} }
 
-        public Pizza(string nombre, double precio, string tamaño, string urlFoto)
+        public Pizza(int id, string nombre, double precio, string Tamano, string urlFoto)
         {
-            Random rnd = new Random();
-
-            _id = rnd.Next(1, 100);
+            _id = id;
             _nombre = nombre;
             _precio = precio;
-            _tamaño = tamaño;
+            _Tamano = Tamano;
             _urlFoto = urlFoto;
         }
 

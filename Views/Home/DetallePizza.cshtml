@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "Detalle Pizza @ViewBag.Pizza.Nombre";
+    ViewData["Title"] = "Detalle Pizza " + ViewBag.Pizza.Nombre;
 }
 
 <div class="cuadro">
@@ -7,9 +7,9 @@
     <div>
         <h5>Nombre: @ViewBag.Pizza.Nombre</h5>
         <p>Precio: $@ViewBag.Pizza.Precio</p>
-        <p>Tamaño: @ViewBag.Pizza.Tamaño</p>
+        <p>Tamano: @ViewBag.Pizza.Tamano</p>
 
-        <div>
+        <div class="mb-3">
             Ingredientes
             <div class="row">
                 @foreach (Ingrediente Ingrediente in ViewBag.Pizza.ListaIngredientes){
@@ -21,6 +21,7 @@
             </div>
         </div>
 
+        <a href='@Url.Action("Index", "Home")' class="btn btn-secondary">Volver</a>
         <a href='@Url.Action("EliminarPizza", "Home", new { id = @ViewBag.Pizza.Id })' class="btn btn-danger">Eliminar</a>
     </div>
 </div>

@@ -23,7 +23,6 @@ C:\xampp\htdocs\files\ORT\tp09\obj\Debug\net5.0\scopedcss\bundle\tp09.styles.css
 C:\xampp\htdocs\files\ORT\tp09\obj\Debug\net5.0\tp09.TagHelpers.input.cache
 C:\xampp\htdocs\files\ORT\tp09\obj\Debug\net5.0\tp09.TagHelpers.output.cache
 C:\xampp\htdocs\files\ORT\tp09\obj\Debug\net5.0\tp09.RazorCoreGenerate.cache
-C:\xampp\htdocs\files\ORT\tp09\obj\Debug\net5.0\Razor\Views\Home\AgregarPizza.cshtml.g.cs
 C:\xampp\htdocs\files\ORT\tp09\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 C:\xampp\htdocs\files\ORT\tp09\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 C:\xampp\htdocs\files\ORT\tp09\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
@@ -39,3 +38,4 @@ C:\xampp\htdocs\files\ORT\tp09\obj\Debug\net5.0\tp09.pdb
 C:\xampp\htdocs\files\ORT\tp09\obj\Debug\net5.0\tp09.genruntimeconfig.cache
 C:\xampp\htdocs\files\ORT\tp09\obj\Debug\net5.0\tp09.csproj.CopyComplete
 C:\xampp\htdocs\files\ORT\tp09\obj\Debug\net5.0\Razor\Views\Home\DetallePizza.cshtml.g.cs
+C:\xampp\htdocs\files\ORT\tp09\obj\Debug\net5.0\Razor\Views\Home\FormularioPizza.cshtml.g.cs

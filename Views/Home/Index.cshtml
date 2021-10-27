@@ -2,17 +2,24 @@
     ViewData["Title"] = "Index";
 }
 
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        <h3>Error: @ViewBag.Error</h3>
+    </div>
+}
+
 <div class="button-crear-pizza-container">
     <a class="button button-crear-pizza" asp-controller="Home" asp-action="AgregarPizza">
         <span>Crear Pizza</span>
     </a>
 </div>
 
-<div class="row">
+<div class="row" style="margin-top:100px;">
     @foreach (Pizza pizza in ViewBag.Pizzas){
         <div class="col-md-4">
             <div class="cuadro">
-                <img class="w-100" src="@pizza.UrlFoto" alt="@pizza.Nombre">
+                <img class="w-100 img-pizza" src="@pizza.UrlFoto" alt="@pizza.Nombre">
                 <div>
                     <h5>@pizza.Nombre</h5>
                     <p>$@pizza.Precio</p>

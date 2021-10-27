@@ -1,0 +1,86 @@
+@{
+    ViewData["Title"] = "Agregar Pizza";
+}
+
+@{
+    bool editing = ViewBag.editing;
+    string estado = editing ? "Actualizar" : "Agregar";
+}
+
+@* Actualizar: Pendiente *@
+
+<div class="cuadro">
+    <h1>Agregar Nueva Pizza</h1>
+
+    <form method="POST" action='@Url.Action("GuardarPizza", "Home")'>
+        <div class="row">
+            <div class="col-sm-12 col-lg-6">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input class="form-control" name="nombre" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Precio</label>
+                    <input class="form-control" type="number" name="precio" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Tamano</label>
+                    <select class="form-control" name="tamano" required>
+                        <option value="Grande">Grande</option>
+                        <option value="Mediana">Mediana</option>
+                        <option value="Chica">Chica</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Url Foto</label>
+                    <input class="form-control" name="urlfoto" required />
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-lg-6">
+                <div class="form-group">
+                    <div class="row">
+                        @foreach (Ingrediente Ingrediente in ViewBag.Ingredientes){
+                            <div class="col-sm-12 col-md-4">
+                                <label style="cursor:pointer;" class="ingrediente">
+                                    <input type="checkbox" name="ingredientes" value="@Ingrediente.Nombre" />
+                                    @Ingrediente.Nombre
+                                    <img height="130px" width="100%" src="@Ingrediente.UrlFoto" class="disabled" />
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <a href='@Url.Action("Index", "Home")' class="btn btn-secondary">Volver</a>
+            <button type="submit" class="btn btn-primary">
+                @estado Pizza
+            </button>
+        </div>
+    </form>
+</div>
+
+@* Jquery CDN *@
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+<script>
+    $(".ingrediente").click(function(e) {
+        if(this.children[1].classList.contains("disabled"))
+        {
+            this.children[0].checked = true;
+            this.children[1].classList.remove("disabled");
+        }
+        else
+        {
+            this.children[0].checked = false;
+            this.children[1].classList.add("disabled");
+        }
+        e.preventDefault();
+    });
+</script>
